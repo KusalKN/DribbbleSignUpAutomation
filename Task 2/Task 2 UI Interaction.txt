@@ -1,0 +1,29 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DribbbleSignUpTest {
+    public static void main(String[] args) {
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://dribbble.com/signup/new");
+        driver.findElement(By.xpath("//button[text()='Continue with email']")).click();
+        driver.findElement(By.id("user_username")).sendKeys("kusal");
+        driver.findElement(By.id("user_email")).sendKeys("kusalnilangakn@gmail.com");
+        driver.findElement(By.id("user_password")).sendKeys("kusal@2023");
+        driver.findElement(By.xpath("//button[text()='Create Account']")).click();
+
+       
+        String expectedTitle = "Dribbble - Discover the World’s Top Designers & Creative Professionals";
+        String actualTitle = driver.getTitle();
+
+        if (actualTitle.equals(expectedTitle)) {
+            System.out.println("User redirected successfully.");
+        } else {
+            System.out.println("Redirection failed.");
+        }
+
+        driver.quit();
+    }
+}
